@@ -13,11 +13,41 @@
     max-height: 100%;
     width: 100%;
 }
+
+.minihero-unit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    background-image: url("../images/hero.jpg");
+    /*height: 300px;*/
+    background-size: ;
+    -webkit-background-size: cover;
+    background-position: center;
+    max-height: 70%;
+    width: 100%;
+}
+
 .rest-unit {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
+    padding-top: 20px;
+}
+
+.rest-unit-others {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    padding-top: 20px;
+}
+.searchbox {
+    border-radius: 30px!important;
+    padding: 30px!important;
     padding-top: 20px;
 }
 .featured {
@@ -130,14 +160,56 @@
     background-color: rgba(104,181,206,.6);
 }
 
+/*programlist*/
+.programlist:hover {
+    border: 1px solid #68b5ce;
+    box-shadow: 0 0 5px 0 #68b5ce;
+}
+.programlist {
+    margin-bottom:  10px;
+}
+.programlist img {
+    height: 70%;
+}
+.programtitle {
+    font-weight: bold;
+    color: #2a8685;
+}
+.programlist td{
+
+    padding-left: 20px;
+
+}
+.programlist .client a {
+    margin-top: -8px;
+}
+.programlist .client img {
+    width: 50px;
+    height: 50px;
+    /*border: 1px solid #a4c6c6;*/
+    box-shadow: 0 0 2px 0 #a4c6c6;
+    background-color: #fff;
+}
+.programlist .client img:hover {
+    width: 50px;
+    height: 50px;
+    /*border: 1px solid #a4c6c6;*/
+    box-shadow: 0 0 2px 0 #2a8685;
+    padding: 2px;
+    background-color: #fff;
+}
 /*
  * Override BootStrap
  *
 */
 .thumbnail {
-    border-radius: 0!important;
-    padding: 0!important;
+    border-radius: 10px!important;
+    padding: 10px!important;
+    padding-top: 20px!important;
+    padding-bottom: 20px!important;
+
 }
+
 .thumbnail .caption {
     padding-left: 19px!important;
 }
@@ -148,4 +220,3 @@
 .media, .media-body{
     overflow: visible!important;
 }
-
