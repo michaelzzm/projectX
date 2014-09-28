@@ -198,6 +198,40 @@
     padding: 2px;
     background-color: #fff;
 }
+
+.programlist .star-ctr {
+    display: inline-block;
+    position: relative;
+}
+
+.programlist .star-ctr ul {
+    white-space: nowrap;
+    list-style: none outside none;
+    padding-left: 0;
+    overflow: hidden;
+
+}
+
+.programlist .star-fg {
+    top: 0;
+    position: absolute;
+}
+
+.programlist .star-ctr li {
+    display: inline-block;
+}
+
+.programlist .star-ctr a > span {
+    font-size: 1.5em;
+}
+
+.programlist .star-bg a > span {
+    color: silver
+}
+
+.programlist .star-fg a > span {
+    color: yellow;
+}
 /*
  * Override BootStrap
  *
