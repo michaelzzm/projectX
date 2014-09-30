@@ -24,6 +24,7 @@ return  array(
     'APP_DOMAIN_SUFFIX'     =>  '', // 域名后缀 如果是com.cn net.cn 之类的后缀必须设置    
     'ACTION_SUFFIX'         =>  '', // 操作方法后缀
     'MULTI_MODULE'          =>  true, // 是否允许多模块 如果为false 则必须设置 DEFAULT_MODULE
+    'MODULE_ALLOW_LIST'     =>  array('Home'),
     'MODULE_DENY_LIST'      =>  array('Common','Runtime'),
     'CONTROLLER_LEVEL'      =>  1,
     'APP_AUTOLOAD_LAYER'    =>  'Controller,Model', // 自动加载的应用类库层 关闭APP_USE_NAMESPACE后有效
@@ -41,12 +42,12 @@ return  array(
     'DEFAULT_C_LAYER'       =>  'Controller', // 默认的控制器层名称
     'DEFAULT_V_LAYER'       =>  'View', // 默认的视图层名称
     'DEFAULT_LANG'          =>  'zh-cn', // 默认语言
-    'DEFAULT_THEME'         =>  '',	// 默认模板主题名称
+    'DEFAULT_THEME'         =>  '', // 默认模板主题名称
     'DEFAULT_MODULE'        =>  'Home',  // 默认模块
     'DEFAULT_CONTROLLER'    =>  'Index', // 默认控制器名称
     'DEFAULT_ACTION'        =>  'index', // 默认操作名称
     'DEFAULT_CHARSET'       =>  'utf-8', // 默认输出编码
-    'DEFAULT_TIMEZONE'      =>  'PRC',	// 默认时区
+    'DEFAULT_TIMEZONE'      =>  'PRC',  // 默认时区
     'DEFAULT_AJAX_RETURN'   =>  'JSON',  // 默认AJAX 数据返回格式,可选JSON XML ...
     'DEFAULT_JSONP_HANDLER' =>  'jsonpReturn', // 默认JSONP格式返回的处理方法
     'DEFAULT_FILTER'        =>  'htmlspecialchars', // 默认参数过滤方法 用于I函数...
@@ -84,7 +85,7 @@ return  array(
 
     /* 错误设置 */
     'ERROR_MESSAGE'         =>  '页面错误！请稍后再试～',//错误显示信息,非调试模式有效
-    'ERROR_PAGE'            =>  '',	// 错误定向页面
+    'ERROR_PAGE'            =>  '', // 错误定向页面
     'SHOW_ERROR_MSG'        =>  false,    // 显示错误信息
     'TRACE_MAX_RECORD'      =>  100,    // 每个级别的错误信息 最大记录数
 
@@ -92,7 +93,7 @@ return  array(
     'LOG_RECORD'            =>  false,   // 默认不记录日志
     'LOG_TYPE'              =>  'File', // 日志记录类型 默认为文件方式
     'LOG_LEVEL'             =>  'EMERG,ALERT,CRIT,ERR',// 允许记录的日志级别
-    'LOG_FILE_SIZE'         =>  2097152,	// 日志文件大小限制
+    'LOG_FILE_SIZE'         =>  2097152,    // 日志文件大小限制
     'LOG_EXCEPTION_RECORD'  =>  false,    // 是否记录异常信息日志
 
     /* SESSION设置 */
@@ -135,12 +136,12 @@ return  array(
     
     /* URL设置 */
     'URL_CASE_INSENSITIVE'  =>  true,   // 默认false 表示URL区分大小写 true则表示不区分大小写
-    'URL_MODEL'             =>  1,       // URL访问模式,可选参数0、1、2、3,代表以下四种模式：
+    'URL_MODEL'             =>  2,       // URL访问模式,可选参数0、1、2、3,代表以下四种模式：
     // 0 (普通模式); 1 (PATHINFO 模式); 2 (REWRITE  模式); 3 (兼容模式)  默认为PATHINFO 模式
-    'URL_PATHINFO_DEPR'     =>  '/',	// PATHINFO模式下，各参数之间的分割符号
+    'URL_PATHINFO_DEPR'     =>  '/',    // PATHINFO模式下，各参数之间的分割符号
     'URL_PATHINFO_FETCH'    =>  'ORIG_PATH_INFO,REDIRECT_PATH_INFO,REDIRECT_URL', // 用于兼容判断PATH_INFO 参数的SERVER替代变量列表
     'URL_REQUEST_URI'       =>  'REQUEST_URI', // 获取当前页面地址的系统变量 默认为REQUEST_URI
-    'URL_HTML_SUFFIX'       =>  'html',  // URL伪静态后缀设置
+    'URL_HTML_SUFFIX'       =>  '',  // URL伪静态后缀设置
     'URL_DENY_SUFFIX'       =>  'ico|png|gif|jpg', // URL禁止访问的后缀设置
     'URL_PARAMS_BIND'       =>  true, // URL变量绑定到Action方法参数
     'URL_PARAMS_BIND_TYPE'  =>  0, // URL变量绑定的类型 0 按变量名绑定 1 按变量顺序绑定
