@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
-        <h4 class="modal-title">登 录</h4>
+        <h4 class="modal-title"><strong>登 录</strong></h4>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -18,7 +18,7 @@
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                        <input type="text" class="form-control" placeholder="密码：">
+                        <input type="text" class="form-control" placeholder="密码">
                     </div>
                     <div class="checkbox">
                     <label>
@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-info">登录</button>
+                    <button type="submit" class="btn btn-info"><strong>登录</strong></button>
                 </div>
             </form>
             </div>
@@ -56,10 +56,52 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
-        <h4 class="modal-title">注 册</h4>
+        <h4 class="modal-title"><strong>注 册</strong></h4>
       </div>
       <div class="modal-body">
-        <p>One fine body&hellip;</p>
+        <div class="row">
+            <div class="col-sm-12">
+            <form role="form">
+                <label class="labelinmodal">立刻注册，让身体和心灵旅行起来：</label>
+                <div class="form-group">    
+                    <div class="input-group mb10">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                        <input type="text" class="form-control" placeholder="用户名">
+                    </div>
+                    <div class="input-group mb10">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                        <input type="text" class="form-control" placeholder="邮箱">
+                    </div>
+                    <div class="input-group mb10">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                        <input type="text" class="form-control" placeholder="密码">
+                    </div>
+                    <div class="input-group mb10">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                        <input type="text" class="form-control" placeholder="确认密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info"><strong>开始旅心</strong></button>
+                </div>
+            </form>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <p>
+                    <label class="pull-left labelinmodal">使用合作网站登录：</label>
+                    <a class="pull-right" href="#">
+                        <i class="partner_login_weibo"></i>
+                    </a>
+                    <a class="pull-right" href="#">
+                        <i class="partner_login_qq"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
       </div>
     </div><!-- /.SignupModal-content -->
   </div><!-- /.SignupModal-dialog -->

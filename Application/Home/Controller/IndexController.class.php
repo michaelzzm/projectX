@@ -20,8 +20,8 @@ class IndexController extends Controller {
 
     public function search()
     {
-        $location = I('post.');
+        $post = I('post.');
         $type = I('travel_type');
-        dump($location);
+        dump($post);
     }
 }
