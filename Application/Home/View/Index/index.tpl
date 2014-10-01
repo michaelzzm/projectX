@@ -8,17 +8,17 @@
       <div class="modal-body">
         <div class="row">
             <div class="col-sm-12">
-            <form role="form">
+            <form action="{:U('Home/Index/login')}" role="form" method="post">
                <label class="labelinmodal">使用本站账户登录：</label>
                <div class="form-group">    
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                        <input type="text" class="form-control" placeholder="用户名或邮箱">
+                        <input type="text" class="form-control" placeholder="用户名或邮箱" name="username">
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                        <input type="text" class="form-control" placeholder="密码">
+                        <input type="password" class="form-control" placeholder="密码" name="password">
                     </div>
                     <div class="checkbox">
                     <label>
