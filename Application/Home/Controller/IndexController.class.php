@@ -24,4 +24,16 @@ class IndexController extends Controller {
         $type = I('travel_type');
         dump($post);
     }
+
+    public function login()
+    {
+        $username = I('username');
+        $password = I('password');
+
+        $this->assign('username', $username);
+        $this->assign('password', $password);
+
+        $this->display();
+    }
 }
+?>
