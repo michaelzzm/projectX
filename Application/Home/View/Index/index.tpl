@@ -8,17 +8,17 @@
       <div class="modal-body">
         <div class="row">
             <div class="col-sm-12">
-            <form action="{:U('Home/Index/login')}" role="form" method="post">
+            <form id="loginform" action="{:U('Home/Index/login')}" role="form" method="post">
                <label class="labelinmodal">使用本站账户登录：</label>
                <div class="form-group">    
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                        <input type="text" class="form-control" placeholder="用户名或邮箱" name="username">
+                        <input type="text" class="form-control" placeholder="用户名或邮箱" id="username" name="username">
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                        <input type="password" class="form-control" placeholder="密码" name="password">
+                        <input type="password" class="form-control" placeholder="密码" id="password" name="password">
                     </div>
                     <div class="checkbox">
                     <label>
@@ -27,8 +27,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-info"><strong>登录</strong></button>
+                    <button id="login" type="button" class="btn btn-info"><strong>登录</strong></button>
                 </div>
+                
+                <div id="alertLoginSuccess" class="alert alert-success" role="alert">登录成功</div>
+                <div id="alertWrongPwd" class="alert alert-danger" role="alert">密码错误，请重新输入</div>
+                <div id="alertUndefinedUser"class="alert alert-warning" role="alert">用户名不存在</div>
+
             </form>
             </div>
         </div>
@@ -61,29 +66,35 @@
       <div class="modal-body">
         <div class="row">
             <div class="col-sm-12">
-            <form role="form">
+            <form id="registerform" action="{:U('Home/Index/register')}" role="form" method="post">
                 <label class="labelinmodal">立刻注册，让身体和心灵旅行起来：</label>
                 <div class="form-group">    
                     <div class="input-group mb10">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                        <input type="text" class="form-control" placeholder="用户名">
+                        <input id="registerUsername" name="registerUsername" type="text" class="form-control" placeholder="用户名">
                     </div>
                     <div class="input-group mb10">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                        <input type="text" class="form-control" placeholder="邮箱">
+                        <input id="registerEmail" name="registerEmail" type="text" class="form-control" placeholder="邮箱">
                     </div>
                     <div class="input-group mb10">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                        <input type="text" class="form-control" placeholder="密码">
+                        <input id="registerPwd" name="registerPwd" type="password" class="form-control" placeholder="密码">
                     </div>
                     <div class="input-group mb10">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                        <input type="text" class="form-control" placeholder="确认密码">
+                        <input id="registerPwdConfirm" name="registerPwdConfirm" type="password" class="form-control" placeholder="确认密码">
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-info"><strong>开始旅心</strong></button>
+                    <button id="registerbtn" type="button" class="btn btn-info"><strong>开始旅心</strong></button>
                 </div>
+
+                <div id="alertRegisterSuccess" class="alert alert-success" role="alert">注册成功</div>
+                <div id="alertDuplicateMail" class="alert alert-danger" role="alert">该邮箱已注册</div>
+                <div id="alertDifferentPwd" class="alert alert-danger" role="alert">密码不一致</div>
+                <div id="alertEmptyField" class="alert alert-warning" role="alert">必填项不能为空</div>
+
             </form>
             </div>
         </div>
@@ -331,12 +342,7 @@
         </footer>
     </div>
 </section>
-
-
-hello World!
-
-{$name}
-
+ 
 <?php
 echo T('Home/index');
 
@@ -344,8 +350,82 @@ echo T('Home/index');
     $area = $Ip->getlocation('203.34.5.66'); // 获取某个IP地址所在的位置
     $ip = get_client_ip();
     dump($ip);
-
-
 ?>
 
-<!--<img src="{:U('Index/verify')}" />-->
+<script src="__PUBLIC__/js/jquery.min.1.11.1.js"></script>
+
+<script>
+
+function hideLoginAlert()
+{
+    $('#alertLoginSuccess').hide();
+    $('#alertWrongPwd').hide();
+    $('#alertUndefinedUser').hide();
+}
+
+function hideRegisterAlert()
+{
+    $('#alertRegisterSuccess').hide();
+    $('#alertDuplicateMail').hide();
+    $('#alertEmptyField').hide();
+    $('#alertDifferentPwd').hide();
+}
+
+$(function(){
+
+    hideLoginAlert();
+    hideRegisterAlert();
+
+    $('#login').click(function() {
+        var $action = $('#loginform').attr('action');
+        $.post($action, {username:$('#username').val(), password:$('#password').val()}, function(data) {
+
+            hideLoginAlert();
+            switch(data)
+            {
+                case 0:
+                    console.log("login ok");
+                    $('#alertLoginSuccess').show();
+                    // TODO: How to keep the session data?
+                    break;
+                case 1:
+                    console.log("wrong password");
+                    $('#alertWrongPwd').show();
+                    break;
+                case 2:
+                    console.log("user undefined");
+                    $('#alertUndefinedUser').show();
+                    break;
+            }
+        });
+    });
+
+    $('#registerbtn').click(function() {
+        var $action = $('#registerform').attr('action');
+        $.post($action, {username:$('#registerUsername').val(), email:$('#registerEmail').val(), password:$('#registerPwd').val(), passwordAgain:$('#registerPwdConfirm').val()}, function(data) {
+            
+            hideRegisterAlert();
+            switch(data)
+            {
+                case 0:
+                    console.log("register ok");
+                    $('#alertRegisterSuccess').show();
+                    break;
+                case 1:
+                    console.log("field can not be empty");
+                    $('#alertEmptyField').show();
+                    break;
+                case 2:
+                    console.log("passwords not the same");
+                    $('#alertDifferentPwd').show();
+                    break;
+                case 3:
+                    console.log("user already exists");
+                    $('#alertDuplicateMail').show();
+                    break;
+            }
+        });
+    });
+})
+
+</script>
