@@ -141,8 +141,14 @@
             </li>
           </ul>-->
           <ul class="nav navbar-nav navbar-right nav-pills">
+            <?php
+                if(is_null($_SESSION['authId'])) {
+            ?>
             <li><a class="register btn btn-info btn-sm navbar-btn" href="#" data-toggle="modal" data-target="#SignupModal">登 录</a></li>
             <li><a class="signup btn btn-success btn-sm navbar-btn" href="#"  data-toggle="modal" data-target="#RegisterModal">注 册</a></li>
+            <?php
+                }
+            ?>
             <!--<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">

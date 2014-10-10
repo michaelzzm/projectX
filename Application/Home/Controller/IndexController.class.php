@@ -8,11 +8,6 @@ class IndexController extends Controller {
 
     }
 
-    public function hashPwd($pwd, $algo = 'sha1')
-    {
-        return hash($algo, $pwd);
-    }
-
     public function index()
     {
         //$this->show('<style type="text/css">*{ padding: 0; margin: 0; } div{ padding: 4px 48px;} body{ background: #fff; font-family: "微软雅黑"; color: #333;font-size:24px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.8em; font-size: 36px }</style><div style="padding: 24px 48px;"> <h1>:)</h1><p>欢迎使用 <b>ThinkPHP</b>！</p><br/>[ 您现在访问的是Home模块的Index控制器 ]</div><script type="text/javascript" src="http://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script>','utf-8');
@@ -42,23 +37,25 @@ class IndexController extends Controller {
             $this->error('必填项不能为空');
         }
 
-        $result = $user->where("username='%s' and password='%s'", $data[username], $data[password])->find();
-
+        $result = $user->where("username='%s'", $data[username])->find();
         if($result)
-        {
-            $this->success('登录成功', __APP__);
-        }
-        else
-        {
-            $user_valid = $user->where("username='%s'", $data[username])->find();
-            if($user_valid)
+        {   
+            if($result[password] == $data[password])
             {
-                $this->error('密码错误，请重新输入');
+                // save context
+                $_SESSION['authId'] = $result['user_id'];
+                $_SESSION['account'] = $result['username'];
+
+                $this->success('登录成功', __APP__);
             }
             else
             {
-                $this->error('用户名不存在'); 
+                $this->error('密码错误，请重新输入');
             }
+        }
+        else
+        {
+            $this->error('用户名不存在');
         }
     }
 
