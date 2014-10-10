@@ -90,6 +90,10 @@ class IndexController extends Controller {
             // TODO: exception handling
             $user->add($tuple);
 
+            // save context
+            $_SESSION['authId'] = $tuple['user_id'];
+            $_SESSION['account'] = $tuple['username'];
+
             $this->success('注册成功', __APP__);
         }
     }
