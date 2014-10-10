@@ -10,7 +10,7 @@
             <div class="col-sm-12">
             <form id="loginform" action="{:U('Home/Index/login')}" role="form" method="post">
                <label class="labelinmodal">使用本站账户登录：</label>
-               <div class="form-group">    
+               <div class="form-group">  
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                         <input type="text" class="form-control" placeholder="用户名或邮箱" id="username" name="username">
@@ -27,13 +27,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button id="login" type="button" class="btn btn-info"><strong>登录</strong></button>
+                    <button id="loginbtn" type="button" class="btn btn-info"><strong>登录</strong></button>
                 </div>
-                
-                <div id="alertLoginSuccess" class="alert alert-success" role="alert">登录成功</div>
-                <div id="alertWrongPwd" class="alert alert-danger" role="alert">密码错误，请重新输入</div>
-                <div id="alertUndefinedUser"class="alert alert-warning" role="alert">用户名不存在</div>
-
+                <div id="loginnotice" style="display:none" class="alert" role="alert"></div> 
             </form>
             </div>
         </div>
@@ -89,12 +85,7 @@
                 <div class="form-group">
                     <button id="registerbtn" type="button" class="btn btn-info"><strong>开始旅心</strong></button>
                 </div>
-
-                <div id="alertRegisterSuccess" class="alert alert-success" role="alert">注册成功</div>
-                <div id="alertDuplicateMail" class="alert alert-danger" role="alert">该邮箱已注册</div>
-                <div id="alertDifferentPwd" class="alert alert-danger" role="alert">密码不一致</div>
-                <div id="alertEmptyField" class="alert alert-warning" role="alert">必填项不能为空</div>
-
+                <div id="registernotice" style="display:none" class="alert" role="alert"></div> 
             </form>
             </div>
         </div>
@@ -173,7 +164,7 @@
             <div class="col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0 searchForm">
                 <h1>身体 <small>和</small> 心灵</h1>
                 <h2>同时在路上。</h2>
-                <form action="{:U('Home/Index/search')}" role="search" method="post">
+                <form action="{:U('Home/Index/testbyliuqixin')}" role="search" method="post">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3 col-sm-3">
@@ -353,79 +344,57 @@ echo T('Home/index');
 ?>
 
 <script src="__PUBLIC__/js/jquery.min.1.11.1.js"></script>
-
 <script>
-
-function hideLoginAlert()
-{
-    $('#alertLoginSuccess').hide();
-    $('#alertWrongPwd').hide();
-    $('#alertUndefinedUser').hide();
-}
-
-function hideRegisterAlert()
-{
-    $('#alertRegisterSuccess').hide();
-    $('#alertDuplicateMail').hide();
-    $('#alertEmptyField').hide();
-    $('#alertDifferentPwd').hide();
-}
 
 $(function(){
 
-    hideLoginAlert();
-    hideRegisterAlert();
-
-    $('#login').click(function() {
+    $('#loginbtn').click(function() {
         var $action = $('#loginform').attr('action');
         $.post($action, {username:$('#username').val(), password:$('#password').val()}, function(data) {
-
-            hideLoginAlert();
-            switch(data)
+            if(1 != data['status'])
             {
-                case 0:
-                    console.log("login ok");
-                    $('#alertLoginSuccess').show();
-                    // TODO: How to keep the session data?
-                    break;
-                case 1:
-                    console.log("wrong password");
-                    $('#alertWrongPwd').show();
-                    break;
-                case 2:
-                    console.log("user undefined");
-                    $('#alertUndefinedUser').show();
-                    break;
+                $('#loginnotice').removeClass('alert-success').addClass('alert-danger');
+                $('#loginnotice').html(data['info']);
+                $('#loginnotice').show();
+            }
+            else
+            {
+                $('#loginnotice').removeClass('alert-danger').addClass('alert-success');
+                $('#loginnotice').html(data['info']);
+                $('#loginnotice').show();
+                
+                location.href = data['url'];
             }
         });
     });
+
+    $('#SignupModal').on('hidden.bs.modal', function(e) {
+        $('#loginnotice').hide();
+    });
+
 
     $('#registerbtn').click(function() {
         var $action = $('#registerform').attr('action');
         $.post($action, {username:$('#registerUsername').val(), email:$('#registerEmail').val(), password:$('#registerPwd').val(), passwordAgain:$('#registerPwdConfirm').val()}, function(data) {
-            
-            hideRegisterAlert();
-            switch(data)
+            if(1 != data['status'])
             {
-                case 0:
-                    console.log("register ok");
-                    $('#alertRegisterSuccess').show();
-                    break;
-                case 1:
-                    console.log("field can not be empty");
-                    $('#alertEmptyField').show();
-                    break;
-                case 2:
-                    console.log("passwords not the same");
-                    $('#alertDifferentPwd').show();
-                    break;
-                case 3:
-                    console.log("user already exists");
-                    $('#alertDuplicateMail').show();
-                    break;
+                $('#registernotice').removeClass('alert-success').addClass('alert-danger');
+                $('#registernotice').html(data['info']);
+                $('#registernotice').show();
+            }
+            else
+            {
+                $('#registernotice').removeClass('alert-danger').addClass('alert-success');
+                $('#registernotice').html(data['info']);
+                $('#registernotice').show();
+
+                location.href = data['url'];
             }
         });
     });
-})
 
+    $('#RegisterModal').on('hidden.bs.modal', function(e) {
+        $('#registernotice').hide();
+    });
+});
 </script>
