@@ -3,11 +3,6 @@ namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
 
-    protected function checkUser()
-    {
-
-    }
-
     public function index()
     {
         //$this->show('<style type="text/css">*{ padding: 0; margin: 0; } div{ padding: 4px 48px;} body{ background: #fff; font-family: "微软雅黑"; color: #333;font-size:24px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.8em; font-size: 36px }</style><div style="padding: 24px 48px;"> <h1>:)</h1><p>欢迎使用 <b>ThinkPHP</b>！</p><br/>[ 您现在访问的是Home模块的Index控制器 ]</div><script type="text/javascript" src="http://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script>','utf-8');
@@ -20,10 +15,24 @@ class IndexController extends Controller {
 
     public function testbyliuqixin()
     {
-        $post = I('post.');
-        $type = I('travel_type');
+        $data = I('post.');
 
-        $this->display();
+        dump($data);
+
+        $destination = M('Destination', '', 'DB_CONFIG');
+        $destination_id = $destination->where("city = '%s'", $data[travel_location])->getField('destination_id');
+
+        $category = M('ProjectCategory', '', 'DB_CONFIG');
+        $category_id = $category->where("type = '%s'", $data[travel_type])->getField('category_id');
+
+        $project = M('ProjectSearch', '', 'DB_CONFIG');
+        $project_id = $project->where("destination_id = '%s' and category_id = '%s'", $destination_id, $category_id)->getField('project_id');
+        if(isset($project_id))
+        {
+            $project_details = M('ProjectDetails', '', 'DB_CONFIG');
+            $result = $project_details->where("project_id = '%s'", $project_id)->select();
+            dump($result);
+        }
     }
 
     public function login()

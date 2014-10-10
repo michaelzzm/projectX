@@ -175,19 +175,19 @@
                         <div class="row">
                             <div class="col-md-3 col-sm-3">
                                 <select class="form-control input-lg input-bigger" name="travel_location" id="travel_location">
-                                    <option value="Shanghai">中国，上海</option>
-                                    <option value="Newyork">美国，纽约</option>
-                                    <option value="Sydney">澳大利亚，悉尼</option>
+                                    <option value="SHANGHAI">中国，上海</option>
+                                    <option value="NEW YORK">美国，纽约</option>
+                                    <option value="SYDNEY">澳大利亚，悉尼</option>
                                 </select>
                                 <!--<input type="text" placeholder="目的地" class="form-control input-lg input-bigger" name="mail" id="mail" value="" autofocus="">-->
                             </div>
                             <div class="col-md-3 col-sm-3">
                                 <!--<input type="text" placeholder="类型" class="form-control input-lg input-bigger" name="mail" id="mail" value="" autofocus="">-->
                                 <select class="form-control input-lg input-bigger" name="travel_type" id="travel_type">
-                                    <option value="Volunteer">志愿者</option>
-                                    <option value="Study">学  习</option>
-                                    <option value="Teach">教  学</option>
-                                    <option value="Intern">实  习</option>
+                                    <option value="VOLUNTEER">志愿者</option>
+                                    <option value="STUDY">学  习</option>
+                                    <option value="TEACH">教  学</option>
+                                    <option value="INTERN">实  习</option>
                                 </select>
                             </div>
                             <div class="col-md-3 col-sm-3">
