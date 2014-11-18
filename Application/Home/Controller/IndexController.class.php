@@ -13,26 +13,28 @@ class IndexController extends Controller {
         $this->display();
     }
 
-    public function testbyliuqixin()
+    public function search()
     {
         $data = I('post.');
 
-        dump($data);
+        // dump($data);
 
-        $destination = M('Destination', '', 'DB_CONFIG');
-        $destination_id = $destination->where("city = '%s'", $data[travel_location])->getField('destination_id');
+        // $destination = M('Destination', '', 'DB_CONFIG');
+        // $destination_id = $destination->where("city = '%s'", $data[travel_location])->getField('destination_id');
 
-        $category = M('ProjectCategory', '', 'DB_CONFIG');
-        $category_id = $category->where("type = '%s'", $data[travel_type])->getField('category_id');
+        // $category = M('ProjectCategory', '', 'DB_CONFIG');
+        // $category_id = $category->where("type = '%s'", $data[travel_type])->getField('category_id');
 
-        $project = M('ProjectSearch', '', 'DB_CONFIG');
-        $project_id = $project->where("destination_id = '%s' and category_id = '%s'", $destination_id, $category_id)->getField('project_id');
-        if(isset($project_id))
-        {
-            $project_details = M('ProjectDetails', '', 'DB_CONFIG');
-            $result = $project_details->where("project_id = '%s'", $project_id)->select();
-            dump($result);
-        }
+        // $project = M('ProjectSearch', '', 'DB_CONFIG');
+        // $project_id = $project->where("destination_id = '%s' and category_id = '%s'", $destination_id, $category_id)->getField('project_id');
+        // if(isset($project_id))
+        // {
+        //     $project_details = M('ProjectDetails', '', 'DB_CONFIG');
+        //     $result = $project_details->where("project_id = '%s'", $project_id)->select();
+        //     dump($result);
+        // }
+
+        $this->display();
     }
 
     public function login()

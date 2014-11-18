@@ -170,7 +170,7 @@
             <div class="col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0 searchForm">
                 <h1>身体 <small>和</small> 心灵</h1>
                 <h2>同时在路上。</h2>
-                <form action="{:U('Home/Index/testbyliuqixin')}" role="search" method="post">
+                <form action="{:U('/search')}" role="search" method="post">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3 col-sm-3">
