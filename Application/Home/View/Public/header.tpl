@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 让部分国产浏览器默认采用高速模式渲染页面 -->
+    <link rel="shortcut icon" href="__PUBLIC__/favicon.ico">
     <meta name="renderer" content="webkit">
     <meta name="keywords" content="[keywords]" />
     <title>[title]</title>

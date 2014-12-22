@@ -10,10 +10,11 @@ class IndexController extends Controller {
         $slogan = '给你一次有意义的旅行';
         $this->assign('name',$name);
         $this->assign('slogan',$slogan);
+        layout('homepagelayout');
         $this->display();
     }
 
-    public function search()
+    /*public function search()
     {
         $data = I('post.');
 
@@ -33,9 +34,8 @@ class IndexController extends Controller {
         //     $result = $project_details->where("project_id = '%s'", $project_id)->select();
         //     dump($result);
         // }
-
-        $this->display();
-    }
+        $this->display('');
+    }*/
 
     public function login()
     {
